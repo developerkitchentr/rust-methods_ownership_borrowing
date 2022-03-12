@@ -25,8 +25,7 @@ fn main() {
         },
     };
     
-    report(hands); 
-
+    hands = report(hands); 
     println!("Let's juggle");
 
     // cargo clippy ile hatalarımızı kontrol ettiğimizde swap işleminde uyarı vermektedir
@@ -36,22 +35,12 @@ fn main() {
     let air = hands.left;
     hands.left = hands.right;
     hands.right = air;  
+   report(hands);
 
-    if hands.left.present {
-        println!("Left hand is holding {}", hands.left.what);
-    } else {
-        println!("Left hand is not holding!");
-    }
-
-    if hands.right.present {
-        println!("Right hand is holding {}", hands.right.what);
-    } else {
-        println!("Right hand is not holding!");
-    }
 }
 
 
-fn report(hands: Hands) {
+fn report(hands: Hands) -> Hands {
     if hands.left.present {
         println!("Left hand is holding {}", hands.left.what);
     } else {
@@ -63,6 +52,8 @@ fn report(hands: Hands) {
     } else {
         println!("Right hand is not holding!");
     }
+
+    hands
 }
 
 
