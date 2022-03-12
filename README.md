@@ -51,7 +51,7 @@ fn juggle(hands: &mut Hands){
     std::mem::swap(&mut hands.left, &mut hands.right)
 }
 ```
-Bu sefer oldu
+Bu sefer oldu. 
 
 
 
