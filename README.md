@@ -30,3 +30,34 @@ report(&hands);
 **Borrowing** ile hands değişkenini report fonksiyonuna ödünç verdik ve değişken içinde
 kullanıldıktan sonra sahipliği main fonksiyonuna geri döndü. (main->hands tam olarak)
 
+- *Step 4:* Kodumuzu refactoring yapıyoruz yani biraz daha okunur hale getirme çabasındayız.
+Ancak tam bu commit ile garip bir hata alıyoruz. _juggle_ fonksiyonunda işler karışıyor.
+``` rust
+fn juggle(hands: &mut Hands){                                                                                   │   35 ``` rust
+     println!("Let's juggle");                                                                                   │   36
+     let air = hands.left;                                                                                       │   37
+     hands.left = hands.right;                                                                                   │   38 ```
+     hands.right = air;                                                                                          │~
+    }
+```
+Gelen değer _mut_ olarak borrow edilmiş ancak görünürde bir sorun olmamasına rağmen 
+bize _mut_ bir değerin _move_ edilemeyeceğini belirtiyor. 
+
+Bunu çözmek için bize en başta önerilen metodu kullanıyoruz.
+
+```
+fn juggle(hands: &mut Hands){
+    println!("Let's juggle");
+    std::mem::swap(&mut hands.left, &mut hands.right)
+}
+```
+Bu sefer oldu
+
+
+
+
+
+
+
+
+
