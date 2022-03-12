@@ -45,19 +45,53 @@ bize _mut_ bir değerin _move_ edilemeyeceğini belirtiyor.
 
 Bunu çözmek için bize en başta önerilen metodu kullanıyoruz.
 
-```
+``` rust
 fn juggle(hands: &mut Hands){
     println!("Let's juggle");
     std::mem::swap(&mut hands.left, &mut hands.right)
 }
 ```
-Bu sefer oldu. 
+Bu sefer oldu.
+
+-*Step 5:* Hadi biraz Rust dilinden konuşalım. Evet bu commit ile yazdığımız her şeyi 
+Rustca! yazdık. Rust dilinde Class yok ancak en az class yapısı kadar güçlü
+**struct** ve **impl** yapısı var. Gerçekten mindset'i değiştirince çözülemeyecek
+problem yok gibi.
+
+```rust
+pub fn new()-> Self {
+            Hands {
+                    left: Item {
+                        what: "an apple".to_owned(),
+                        present: true,
+                    },
+                    right: Item {
+                        what: "an banana".to_owned(),
+                        present: true,
+                    },
+            }
+        }
+
+```
+Üstteki **new** metodunu bir class2ın contractor'ı gibi düşünebiliriz.
+Biz öyle bir anlam yüklüyoruz kendine. Aslında yapısı itibari ile Dart dilindeki
+**factory contractor** yapısına daha çok benziyor. Varsayılan struct nesnemisi oluşturuyoruz.
+
+**->Self** geri dönüşü bize implement ettiğimiz struct ile aynı tipte bir dönüş yapacağımızı söylüyor.
+
+
+```rust
+        pub fn juggle(&mut self){
+            println!("Let's juggle");
+            std::mem::swap(&mut self.left, &mut self.right)
+        }
+
+
+```
+Yukarıda **self** değerimizi neden mutable aldık. Çünkü içeride swap işlemi yapıyoruz ve 
+nesnemizi mutable kullanmamız gerekiyor.
 
 
 
-
-
-
-
-
-
+** _Lütfen commitleri takip ederek adım adım kod üzerinde ilerleyiniz._ **
+** @Uygun Bodur **
