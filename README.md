@@ -1,4 +1,4 @@
-# RUST EXAMPLE METHODS
+# METHODS STRUCT OWNERSHIP SWAP
 ### Rust ile yazdığımız bir kodu adım adı refactoring yapıyoruz.
 
 - *Step 1:* Öncelikle yazdığımız Hands ve Item struct'ları ile basit bir yapı oluşturuyoruz. 
@@ -15,5 +15,6 @@ kabul etmesini belirtmek için şunu da main fonksiyonuna tanımlayabiliriz.
 
 ```
 #[allow(clippy::manual_swap)]
-
 ```
+
+

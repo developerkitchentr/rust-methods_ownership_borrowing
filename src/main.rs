@@ -25,17 +25,7 @@ fn main() {
         },
     };
     
-    if hands.left.present {
-        println!("Left hand is holding {}", hands.left.what);
-    } else {
-        println!("Left hand is not holding!");
-    }
-
-    if hands.right.present {
-        println!("Right hand is holding {}", hands.right.what);
-    } else {
-        println!("Right hand is not holding!");
-    }
+    report(hands); 
 
     println!("Let's juggle");
 
@@ -59,3 +49,22 @@ fn main() {
         println!("Right hand is not holding!");
     }
 }
+
+
+fn report(hands: Hands) {
+    if hands.left.present {
+        println!("Left hand is holding {}", hands.left.what);
+    } else {
+        println!("Left hand is not holding!");
+    }
+
+    if hands.right.present {
+        println!("Right hand is holding {}", hands.right.what);
+    } else {
+        println!("Right hand is not holding!");
+    }
+}
+
+
+
+
