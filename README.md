@@ -17,7 +17,16 @@ kabul etmesini belirtmek için şunu da main fonksiyonuna tanımlayabiliriz.
 #[allow(clippy::manual_swap)]
 ```
 
-- *Step3 3:* Ekrana yazma işlemini _report_ fonksiyonuna devrettik. bu ilk seferde bize moved 
+- *Step 3:* Ekrana yazma işlemini _report_ fonksiyonuna devrettik. bu ilk seferde bize moved 
 hatası verdi. Bunu aşmanın ilk yöntemi olarak bu fonksiyondan değeri döndürmek ve kendine tekrar 
 atamak oldu. Tahmin edeceğiniz gibi bu çok kötü bir yöntem.
+
+Daha iyi bir yöntem şu şekilde oldu:
+
+``` rust
+// borrowing
+report(&hands);
+```
+**Borrowing** ile hands değişkenini report fonksiyonuna ödünç verdik ve değişken içinde
+kullanıldıktan sonra sahipliği main fonksiyonuna geri döndü. (main->hands tam olarak)
 
