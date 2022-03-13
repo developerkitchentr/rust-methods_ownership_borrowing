@@ -22,19 +22,15 @@ mod model {
         }
     }
 
-    pub enum Item<T> {
-        Something(T),
-        Nothing
-    }
     pub struct Hands {
-        pub left: Item<Fruit>,
-        pub right: Item<Fruit>,
+        pub left: Option<Fruit>,
+        pub right: Option<Fruit>,
     }
     impl Hands {
         pub fn new()-> Self {
             Hands {
-                left: Item::Something(Fruit::Apple),
-                right: Item::Something(Fruit::Banana),
+                left: Option::Some(Fruit::Apple),
+                right: Option::Some(Fruit::Banana),
             }
         }
         pub fn juggle(&mut self){
@@ -43,24 +39,22 @@ mod model {
         }
 
         pub fn report(&self)  {
-            self.left.report_item("Left");
-            self.right.report_item("Right");
+            report_item(&self.left, "Left");
+            report_item(&self.right, "Right");
         }
     }
 
-    impl<T: Displayable> Item<T> {
-        pub fn report_item(&self, which: &str) {
-            match self {
-                Item::Something(what) => {
-                    println!("{} hand is holding {}", which, what.display());
-                },
-                _=> {
-                    println!("{} hand is not holding!", which);
-                }
+    pub fn report_item<T: Displayable>(item: &Option<T>, which: &str) {
+        match item {
+            Option::Some(what) => {
+                println!("{} hand is holding {}", which, what.display());
+            },
+            _=> {
+                println!("{} hand is not holding!", which);
             }
         }
-        
     }
+    
 }
 fn main() {
     let mut hands: Hands = Hands::new();    

@@ -182,8 +182,18 @@ Burada **what.display()** metodunun çalışabilmesi için **T** generic tipinde
 bir şekilde belirtmemiz gerekiyor. Bunu da ancak trait yapısı ile yapabiliriz.
 Trait bir nevi interface gibi çalışır.
 
-
-
+-*Step 11:* Sıra geldi Option kullanımına. Option tanımlanan içeriği bir değer olarak ya da 
+null olarak kontrol etmemizi sağlar.
+```rust
+    pub struct Hands {
+        pub left: Option<Fruit>,
+        pub right: Option<Fruit>,
+    }
+```
+Item enum'ını siliyoruz ve yukarıdaki tanımı yapıyoruz. Burada Option kullanmadan left ve right
+değişkenlerinin tipini direk Fruit olarak da tanımlayabilirdik ancak null kontrolü yapamazdık.
+Rust dilinde bire bir null kontrolü yoktur. Bir değer vardır ya da yoktur. İşte bunu option ile 
+kontrol ediyoruz.
 
 
 
