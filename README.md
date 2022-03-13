@@ -178,24 +178,28 @@ Rust ile enum tanımlarında bile Generic kullanabiliriyoruz.
         
     }
 ```
+
 Burada **what.display()** metodunun çalışabilmesi için **T** generic tipinde bu metodun olduğunu
 bir şekilde belirtmemiz gerekiyor. Bunu da ancak trait yapısı ile yapabiliriz.
 Trait bir nevi interface gibi çalışır.
 
--*Step 11:* Sıra geldi Option kullanımına. Option tanımlanan içeriği bir değer olarak ya da 
+-*Step 11:* Sıra geldi Option kullanımına. Option tanımlanan içeriği bir değer olarak ya da
 null olarak kontrol etmemizi sağlar.
+
 ```rust
     pub struct Hands {
         pub left: Option<Fruit>,
         pub right: Option<Fruit>,
     }
 ```
+
 Item enum'ını siliyoruz ve yukarıdaki tanımı yapıyoruz. Burada Option kullanmadan left ve right
 değişkenlerinin tipini direk Fruit olarak da tanımlayabilirdik ancak null kontrolü yapamazdık.
 Rust dilinde bire bir null kontrolü yoktur. Bir değer vardır ya da yoktur. İşte bunu option ile 
 kontrol ediyoruz.
 
-
+Son olarak Displayable trait tanımımızı bir Rust kütüphanesi olan Display ile değiştiriyoruz.
+Bu sayede **what.display()** yazmaya gerek olmadan kullanabiliyoruz.
 
 
 

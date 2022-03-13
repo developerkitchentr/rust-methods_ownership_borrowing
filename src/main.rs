@@ -2,6 +2,9 @@ use model::Hands;
 mod model {
 
 
+
+    use std::fmt::Display;
+
     pub trait Displayable {
         fn display(&self) -> String;
     }
@@ -12,12 +15,12 @@ mod model {
         Kiwi
     }
 
-    impl Displayable for Fruit {
-        fn display(&self) -> String {
+    impl Display for Fruit {
+        fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result { 
             match self {
-                Fruit::Apple => "an Apple".to_owned(),
-                Fruit::Banana => "a Banana".to_owned(),
-                _ => "a Kiwi".to_owned()
+                Fruit::Apple => f.write_str("an Apple"),
+                Fruit::Banana => f.write_str("a Banana"),
+                _ => f.write_str("a Kiwi")
             }
         }
     }
@@ -29,8 +32,8 @@ mod model {
     impl Hands {
         pub fn new()-> Self {
             Hands {
-                left: Option::Some(Fruit::Apple),
-                right: Option::Some(Fruit::Banana),
+                left: Some(Fruit::Apple),
+                right: Some(Fruit::Banana),
             }
         }
         pub fn juggle(&mut self){
@@ -44,10 +47,10 @@ mod model {
         }
     }
 
-    pub fn report_item<T: Displayable>(item: &Option<T>, which: &str) {
+    pub fn report_item<T: Display>(item: &Option<T>, which: &str) {
         match item {
             Option::Some(what) => {
-                println!("{} hand is holding {}", which, what.display());
+                println!("{} hand is holding {}", which, what);
             },
             _=> {
                 println!("{} hand is not holding!", which);
