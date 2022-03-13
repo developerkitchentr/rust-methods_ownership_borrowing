@@ -4,15 +4,16 @@ mod model {
 
     pub enum Fruit {
         Apple,
-        Banana
+        Banana,
+        Kiwi
     }
 
     impl Fruit {
         fn display(&self) -> String {
-            if let Fruit::Apple = self {
-                "an Apple".to_owned()
-            } else {
-                "a Banana".to_owned()
+            match self {
+                Fruit::Apple => "an Apple".to_owned(),
+                Fruit::Banana => "a Banana".to_owned(),
+                _ => "a Kiwi".to_owned()
             }
         }
     }
@@ -45,12 +46,16 @@ mod model {
 
     impl Item {
         pub fn report_item(&self, which: &str) {
-            if let Item::Something(what) = self {
-                println!("{} hand is holding {}", which, what.display());
-            } else {
-                println!("{} hand is not holding!", which);
+            match self {
+                Item::Something(what) => {
+                    println!("{} hand is holding {}", which, what.display());
+                },
+                _=> {
+                    println!("{} hand is not holding!", which);
+                }
             }
         }
+        
     }
 }
 fn main() {

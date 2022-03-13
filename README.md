@@ -144,5 +144,8 @@ Fruid enum'ı için bir fonksiyon yazıyoruz. Şimdilik kötü bir yöntemle.
 ```
 Şimdilik kullandığımız yöntem akıllıca değil.
 
+-*Step 8:* Bu adımda **if let** kontrollerini **match** ile değiştiriyoruz.
+
+
 ** _Lütfen commitleri takip ederek adım adım kod üzerinde ilerleyiniz._ **
 ** @Uygun Bodur **
