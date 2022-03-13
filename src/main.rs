@@ -18,13 +18,13 @@ mod model {
         }
     }
 
-    pub enum Item {
-        Something(Fruit),
+    pub enum Item<T> {
+        Something(T),
         Nothing
     }
     pub struct Hands {
-        pub left: Item,
-        pub right: Item,
+        pub left: Item<Fruit>,
+        pub right: Item<Fruit>,
     }
     impl Hands {
         pub fn new()-> Self {
@@ -44,7 +44,7 @@ mod model {
         }
     }
 
-    impl Item {
+    impl Item<Fruit> {
         pub fn report_item(&self, which: &str) {
             match self {
                 Item::Something(what) => {

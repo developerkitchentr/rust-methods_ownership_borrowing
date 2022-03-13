@@ -146,6 +146,22 @@ Fruid enum'ı için bir fonksiyon yazıyoruz. Şimdilik kötü bir yöntemle.
 
 -*Step 8:* Bu adımda **if let** kontrollerini **match** ile değiştiriyoruz.
 
+-*Step 9:* Kodumuzu Rust' a daha fazla benzetmek için değişiklikler yapmaya devam ediyoruz.
+Yavaş yavaş sabit yazılan parçalardan kurtuluyoruz. Bunun ilk adımı da Generic tipler kullanmak.
+
+```rust
+    pub enum Item<T> {
+        Something(T),
+        Nothing
+    }
+    pub struct Hands {
+        pub left: Item<Fruit>,
+        pub right: Item<Fruit>,
+    }
+```
+
+Rust ile enum tanımlarında bile Generic kullanabiliriyoruz.
+
 
 ** _Lütfen commitleri takip ederek adım adım kod üzerinde ilerleyiniz._ **
 ** @Uygun Bodur **
