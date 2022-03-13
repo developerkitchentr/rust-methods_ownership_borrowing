@@ -1,8 +1,8 @@
-use model::{Hands };
+use model::Hands;
 mod model {
-    pub struct Item {
-        pub what: String,
-        pub present: bool,
+    pub enum Item {
+        Something(String),
+        Nothing
     }
     pub struct Hands {
         pub left: Item,
@@ -11,14 +11,8 @@ mod model {
     impl Hands {
         pub fn new()-> Self {
             Hands {
-                    left: Item {
-                        what: "an apple".to_owned(),
-                        present: true,
-                    },
-                    right: Item {
-                        what: "an banana".to_owned(),
-                        present: true,
-                    },
+                left: Item::Something("an apple".to_owned()),
+                right: Item::Something("an banana".to_owned()),
             }
         }
         pub fn juggle(&mut self){
@@ -34,8 +28,8 @@ mod model {
 
     impl Item {
         pub fn report_item(&self, which: &str) {
-            if self.present {
-                println!("{} hand is holding {}", which, self.what);
+            if let Item::Something(what) = self {
+                println!("{} hand is holding {}", which, what);
             } else {
                 println!("{} hand is not holding!", which);
             }

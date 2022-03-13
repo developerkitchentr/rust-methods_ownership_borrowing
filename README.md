@@ -85,11 +85,34 @@ Biz öyle bir anlam yüklüyoruz kendine. Aslında yapısı itibari ile Dart dil
             println!("Let's juggle");
             std::mem::swap(&mut self.left, &mut self.right)
         }
-
-
 ```
 Yukarıda **self** değerimizi neden mutable aldık. Çünkü içeride swap işlemi yapıyoruz ve 
 nesnemizi mutable kullanmamız gerekiyor.
+
+
+-*Step 6:* Rust yapısını biraz daha kullanmaya devam ediyoruz.
+``` rust
+    pub enum Item {
+        Something(String),
+        Nothing
+    }
+```
+Item struct yapısını **enum** ile değiştiriyoruz. Burada Something enum değeri kendisine parametre 
+olarak verilecek değeri alıyor. Diğer dillerden farklı bir enum yapısı var ve bu ciddi bir avantaj.
+
+```rust
+    impl Item {
+        pub fn report_item(&self, which: &str) {
+            if let Item::Something(what) = self {
+                println!("{} hand is holding {}", which, what);
+            } else {
+                println!("{} hand is not holding!", which);
+            }
+        }
+    }
+```
+**report_item** fonksiyonunda da yukarıdaki değişikliği yapıyoruz. _if let_ kalıbı
+bize enum değerindeki bir içeriği sorgulamamızı ve içindeki String değişkene ulaşmamızı aynı anda sağlıyor.
 
 
 
