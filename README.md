@@ -162,6 +162,33 @@ Yavaş yavaş sabit yazılan parçalardan kurtuluyoruz. Bunun ilk adımı da Gen
 
 Rust ile enum tanımlarında bile Generic kullanabiliriyoruz.
 
+-*Step 10:* Bu adımda Generic kullanımını genişletiyoruz.
+```rust
+    impl<T: Displayable> Item<T> {
+        pub fn report_item(&self, which: &str) {
+            match self {
+                Item::Something(what) => {
+                    println!("{} hand is holding {}", which, what.display());
+                },
+                _=> {
+                    println!("{} hand is not holding!", which);
+                }
+            }
+        }
+        
+    }
+```
+Burada **what.display()** metodunun çalışabilmesi için **T** generic tipinde bu metodun olduğunu
+bir şekilde belirtmemiz gerekiyor. Bunu da ancak trait yapısı ile yapabiliriz.
+Trait bir nevi interface gibi çalışır.
+
+
+
+
+
+
+
+
 
 ** _Lütfen commitleri takip ederek adım adım kod üzerinde ilerleyiniz._ **
 ** @Uygun Bodur **

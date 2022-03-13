@@ -2,13 +2,17 @@ use model::Hands;
 mod model {
 
 
+    pub trait Displayable {
+        fn display(&self) -> String;
+    }
+
     pub enum Fruit {
         Apple,
         Banana,
         Kiwi
     }
 
-    impl Fruit {
+    impl Displayable for Fruit {
         fn display(&self) -> String {
             match self {
                 Fruit::Apple => "an Apple".to_owned(),
@@ -44,7 +48,7 @@ mod model {
         }
     }
 
-    impl Item<Fruit> {
+    impl<T: Displayable> Item<T> {
         pub fn report_item(&self, which: &str) {
             match self {
                 Item::Something(what) => {
