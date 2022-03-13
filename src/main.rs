@@ -1,7 +1,24 @@
 use model::Hands;
 mod model {
+
+
+    pub enum Fruit {
+        Apple,
+        Banana
+    }
+
+    impl Fruit {
+        fn display(&self) -> String {
+            if let Fruit::Apple = self {
+                "an Apple".to_owned()
+            } else {
+                "a Banana".to_owned()
+            }
+        }
+    }
+
     pub enum Item {
-        Something(String),
+        Something(Fruit),
         Nothing
     }
     pub struct Hands {
@@ -11,8 +28,8 @@ mod model {
     impl Hands {
         pub fn new()-> Self {
             Hands {
-                left: Item::Something("an apple".to_owned()),
-                right: Item::Something("an banana".to_owned()),
+                left: Item::Something(Fruit::Apple),
+                right: Item::Something(Fruit::Banana),
             }
         }
         pub fn juggle(&mut self){
@@ -29,7 +46,7 @@ mod model {
     impl Item {
         pub fn report_item(&self, which: &str) {
             if let Item::Something(what) = self {
-                println!("{} hand is holding {}", which, what);
+                println!("{} hand is holding {}", which, what.display());
             } else {
                 println!("{} hand is not holding!", which);
             }

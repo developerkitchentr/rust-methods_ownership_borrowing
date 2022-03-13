@@ -114,7 +114,35 @@ olarak verilecek değeri alıyor. Diğer dillerden farklı bir enum yapısı var
 **report_item** fonksiyonunda da yukarıdaki değişikliği yapıyoruz. _if let_ kalıbı
 bize enum değerindeki bir içeriği sorgulamamızı ve içindeki String değişkene ulaşmamızı aynı anda sağlıyor.
 
+-*Step 7:* Bu adımda **enum** tanımını bir adım daha ileri götürüp şu şekilde yapıyoruz.
 
+```rust
+    pub enum Fruit {
+        Apple,
+        Banana
+    }
+    pub enum Item {
+        Something(Fruit),
+        Nothing
+    }
+```
+Artık _string_ değeri yerine **Fruit** adındaki enum kullanılıyor.
+Peki bu enum değerleri _report_item_ içinde nasıl yazdırılacak. Bunun için de
+Fruid enum'ı için bir fonksiyon yazıyoruz. Şimdilik kötü bir yöntemle.
+
+```rust
+    impl Fruit {
+        fn display(&self) -> String {
+            if let Fruit::Apple = self {
+                "an Apple".to_owned()
+            } else {
+                "a Banana".to_owned()
+            }
+        }
+    }
+
+```
+Şimdilik kullandığımız yöntem akıllıca değil.
 
 ** _Lütfen commitleri takip ederek adım adım kod üzerinde ilerleyiniz._ **
 ** @Uygun Bodur **
